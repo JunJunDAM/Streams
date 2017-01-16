@@ -49,6 +49,9 @@ public class Streams {
             new Jugador("Llull", LocalDate.of(1995, 04, 5), 159, realMadrid)
         );
         
+        
+        /adasdasd
+        
         System.out.println("***** EJERCICIO 2.2");
         List<Jugador> ej1 = jugadores.stream().filter(a -> a.getCanastas() > 500).collect(Collectors.toList());
         System.out.println(ej1);
