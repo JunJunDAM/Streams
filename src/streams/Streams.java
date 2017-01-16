@@ -67,5 +67,6 @@ public class Streams {
         }
         System.out.println("***** EJERCICIO 2.5");
         List<Jugador> jugadores2 =
+                //adasdalsd
     }
 }
