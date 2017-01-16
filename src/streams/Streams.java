@@ -7,7 +7,9 @@ package streams;
 
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -48,25 +50,51 @@ public class Streams {
         );
         
         System.out.println("***** EJERCICIO 2.2");
-        for(Jugador j : jugadores){
-            if(j.getCanastas() > 500){
-                System.out.println(j);
-            }
-        }
+        List<Jugador> ej1 = jugadores.stream().filter(a -> a.getCanastas() > 500).collect(Collectors.toList());
+        System.out.println(ej1);
         System.out.println("***** EJERCICIO 2.3");
-        for(Jugador j : jugadores){
-            if(j.getCanastas()> 200 && j.getCanastas() <= 500){
-                System.out.println(j);
-            }
-        }
+        List<Jugador>ej2 = jugadores.stream().filter(a -> a.getCanastas() >= 200 && a.getCanastas() <= 500).collect(Collectors.toList());
+        System.out.println(ej2);
         System.out.println("***** EJERCICIO 2.4");
-        for(Jugador j : jugadores){
-            if(j.getCanastas()> 200 && j.getCanastas() <= 500){
-                System.out.println(j.getNombre());
-            }
-        }
+        //List<Jugador>ej3 = jugadores.stream().filter(a -> a.getCanastas() >= 200 && a.getCanastas() <= 500).map(Jugador::getNombre).collect(Collectors.toList());
+        //System.out.println(ej3);
         System.out.println("***** EJERCICIO 2.5");
-        List<Jugador> jugadores2 =
-                //adasdalsd
+        List<Jugador> ej4 = jugadores.stream().sorted(Comparator.comparing(Jugador::getFechaNacimiento)).collect(Collectors.toList());
+        System.out.println(ej4);
+        System.out.println("***** EJERCICIO 2.6");
+        List<Jugador> ej5 = jugadores.stream().sorted(Comparator.comparing(Jugador::getCanastas)).collect(Collectors.toList());
+        System.out.println(ej5);
+        System.out.println("***** EJERCICIO 2.7");
+        List<Jugador> ej6 = jugadores.stream().sorted(Comparator.comparing(Jugador::getCanastas)).limit(5).collect(Collectors.toList());
+        System.out.println(ej6);
+        System.out.println("***** EJERCICIO 2.8");
+        List<Jugador> ej7 = jugadores.stream().filter(a -> a.getCanastas() >= 200 && a.getCanastas() <= 500).sorted(Comparator.comparing(Jugador::getFechaNacimiento).reversed()).collect(Collectors.toList());
+        System.out.println(ej7);
+        System.out.println("***** EJERCICIO 2.9");
+        System.out.println("***** EJERCICIO 2.10");
+        List<Jugador> ej9 = (List<Jugador>) jugadores.stream().min(Comparator.comparing(Jugador::getCanastas)).get();
+        System.out.println(ej9);
+        System.out.println("***** EJERCICIO 2.11");
+        List<Jugador> ej10 = (List<Jugador>) jugadores.stream().max(Comparator.comparing(Jugador::getCanastas)).get();
+        System.out.println(ej10);
+        System.out.println("***** EJERCICIO 2.12");
+        double ej11 = jugadores.stream().mapToDouble(Jugador::getCanastas).average().getAsDouble();
+        System.out.println(ej11);
+        System.out.println("***** EJERCICIO 2.13");
+        List<Jugador>ej12 = jugadores.stream().filter(a -> a.getEquipo().getLocalidad().equalsIgnoreCase("Barcelona")).collect(Collectors.toList());
+        System.out.println(ej12);
+        System.out.println("***** EJERCICIO 2.14");
+        boolean ej13 = jugadores.stream().anyMatch(a -> a.getCanastas() > 4000);
+        System.out.println(ej13);
+        System.out.println("***** EJERCICIO 2.15");
+        boolean ej14 = jugadores.stream().anyMatch(a -> a.getCanastas() > 50);
+        System.out.println(ej14);
+        System.out.println("***** EJERCICIO 2.16");
+        boolean ej15 = jugadores.stream().filter(a -> a.getEquipo().getNombre().equalsIgnoreCase("GoldenState")).allMatch(b -> b.getCanastas() > 50);
+        System.out.println(ej15);
+        System.out.println("***** EJERCICIO 2.17");
+        System.out.println("***** EJERCICIO 2.18");
+        int ej17 = jugadores.parallelStream().mapToInt(Jugador::getCanastas).reduce(0, (a,b) -> a+b);
+        System.out.println(ej17);
     }
 }

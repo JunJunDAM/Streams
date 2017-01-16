@@ -21,7 +21,7 @@ public class Equipo {
 
     @Override
     public String toString() {
-        return "Equipo{" + "nombre=" + nombre + ", localidad=" + localidad + '}';
+        return nombre + "{Localidad=" + localidad + '}';
     }
 
     public String getNombre() {
